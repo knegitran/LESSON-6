@@ -3,10 +3,10 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const links = [
-  { label: 'Portfolio', href: 'https://portfolio.example.com' },
-  { label: 'Dribbble', href: 'https://dribbble.com' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com' },
-  { label: 'Email', href: 'mailto:hello@example.com' },
+  { label: 'Portfolio', href: 'https://portfolio.example.com', icon: 'mdi-briefcase-outline' },
+  { label: 'Dribbble', href: 'https://dribbble.com', icon: 'mdi-dribbble' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com', icon: 'mdi-linkedin' },
+  { label: 'Email', href: 'mailto:hello@example.com', icon: 'mdi-email-outline' },
 ]
 
 const isDark = ref(true)
@@ -59,6 +59,9 @@ function toggleTheme() {
           target="_blank"
           rel="noopener noreferrer"
         >
+          <span class="social-link-icon" aria-hidden="true">
+            <v-icon :icon="link.icon" size="18" />
+          </span>
           {{ link.label }}
         </a>
 
@@ -173,6 +176,16 @@ function toggleTheme() {
   border-color: var(--accent);
   box-shadow: 0 12px 22px rgba(96, 165, 250, 0.16);
   background: var(--surface-hover);
+}
+
+.social-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  color: var(--text-color);
 }
 
 @media (max-width: 480px) {

@@ -47,7 +47,12 @@ function toggleTheme() {
           product thinking to build digital experiences that feel both useful and memorable.
         </p>
 
-        <RouterLink to="/" class="back-link">Back to home</RouterLink>
+        <RouterLink to="/" class="back-link">
+          <span class="back-link-icon" aria-hidden="true">
+            <v-icon icon="mdi-home" size="18" />
+          </span>
+          Back to home
+        </RouterLink>
       </div>
     </section>
   </main>
@@ -162,5 +167,12 @@ function toggleTheme() {
   border-color: var(--accent);
   box-shadow: 0 12px 22px rgba(96, 165, 250, 0.16);
   background: var(--surface-hover);
+}
+
+.back-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
 }
 </style>
