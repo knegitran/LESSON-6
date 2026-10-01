@@ -1,13 +1,5 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
-import { RouterLink } from 'vue-router'
-
-const links = [
-  { label: 'Portfolio', href: 'https://portfolio.example.com' },
-  { label: 'Dribbble', href: 'https://dribbble.com' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com' },
-  { label: 'Email', href: 'mailto:hello@example.com' },
-]
 
 const isDark = ref(true)
 
@@ -36,34 +28,24 @@ function toggleTheme() {
 
 <template>
   <main class="page-shell">
-    <section class="profile-card">
+    <section class="about-card">
       <button class="theme-toggle" type="button" :aria-label="themeLabel" @click="toggleTheme">
         <span aria-hidden="true">{{ isDark ? '☀' : '☾' }}</span>
       </button>
 
-      <div class="profile-photo" aria-label="Profile photo placeholder">
+      <div class="profile-photo" aria-label="Portrait photo placeholder">
         <span>KN</span>
       </div>
 
-      <div class="profile-details">
+      <div class="about-content">
+        <p class="eyebrow">About</p>
         <h1>Kiyomi Negi-Tran</h1>
-        <p>Designer, builder, and curious thinker crafting thoughtful digital experiences.</p>
+        <p>
+          I’m a multidisciplinary designer and developer who loves turning complex ideas into clear,
+          human-centered experiences. My work blends visual storytelling, thoughtful UX, and practical
+          product thinking to build digital experiences that feel both useful and memorable.
+        </p>
       </div>
-
-      <nav class="link-list" aria-label="Profile links">
-        <a
-          v-for="link in links"
-          :key="link.label"
-          :href="link.href"
-          class="social-link"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {{ link.label }}
-        </a>
-
-        <RouterLink to="/about" class="social-link about-link">About</RouterLink>
-      </nav>
     </section>
   </main>
 </template>
@@ -76,10 +58,10 @@ function toggleTheme() {
   padding: 24px;
 }
 
-.profile-card {
+.about-card {
   position: relative;
   width: min(100%, 480px);
-  padding: 32px 24px 24px;
+  padding: 32px 24px 28px;
   border: 1px solid var(--card-border);
   border-radius: 28px;
   background: var(--card-bg);
@@ -110,74 +92,45 @@ function toggleTheme() {
 }
 
 .profile-photo {
-  width: 104px;
-  height: 104px;
-  margin: 4px auto 20px;
+  width: 120px;
+  height: 120px;
+  margin: 8px auto 18px;
   display: grid;
   place-items: center;
   border-radius: 50%;
-  background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #a855f7 100%);
+  background: linear-gradient(135deg, #38bdf8 0%, #8b5cf6 50%, #f97316 100%);
   color: #ffffff;
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  box-shadow: 0 16px 32px rgba(168, 85, 247, 0.28);
+  box-shadow: 0 16px 32px rgba(59, 130, 246, 0.28);
 }
 
-.profile-details {
-  margin-bottom: 28px;
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.profile-details h1 {
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.about-content h1 {
   margin: 0;
   font-size: clamp(2rem, 4vw, 2.5rem);
   line-height: 1.1;
   letter-spacing: -0.05em;
 }
 
-.profile-details p {
-  margin: 12px auto 0;
-  max-width: 34ch;
+.about-content p {
+  margin: 0;
   color: var(--muted-color);
   font-size: 1rem;
-  line-height: 1.6;
-}
-
-.link-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 54px;
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  background: var(--surface-bg);
-  color: var(--text-color);
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-}
-
-.social-link:hover {
-  transform: translateY(-2px);
-  border-color: var(--accent);
-  box-shadow: 0 12px 22px rgba(96, 165, 250, 0.16);
-  background: var(--surface-hover);
-}
-
-@media (max-width: 480px) {
-  .profile-card {
-    padding-top: 50px;
-  }
+  line-height: 1.7;
 }
 </style>
