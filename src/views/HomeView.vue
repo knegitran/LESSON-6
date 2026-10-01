@@ -3,10 +3,10 @@ import { computed, onMounted, ref, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 
 const links = [
-  { label: 'Portfolio', href: 'https://portfolio.example.com' },
-  { label: 'Dribbble', href: 'https://dribbble.com' },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com' },
-  { label: 'Email', href: 'mailto:hello@example.com' },
+  { label: 'Portfolio', href: 'https://portfolio.example.com', emoji: '🌐' },
+  { label: 'Dribbble', href: 'https://dribbble.com', emoji: '🎨' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com', emoji: '💼' },
+  { label: 'Email', href: 'mailto:hello@example.com', emoji: '✉️' },
 ]
 
 const isDark = ref(true)
@@ -59,10 +59,14 @@ function toggleTheme() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {{ link.label }}
+          <span class="link-emoji" aria-hidden="true">{{ link.emoji }}</span>
+          <span>{{ link.label }}</span>
         </a>
 
-        <RouterLink to="/about" class="social-link about-link">About</RouterLink>
+        <RouterLink to="/about" class="social-link about-link">
+          <span class="link-emoji" aria-hidden="true">👋</span>
+          <span>About</span>
+        </RouterLink>
       </nav>
     </section>
   </main>
@@ -153,6 +157,7 @@ function toggleTheme() {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   min-height: 54px;
   border: 1px solid var(--card-border);
   border-radius: 14px;
@@ -166,6 +171,11 @@ function toggleTheme() {
     border-color 0.2s ease,
     box-shadow 0.2s ease,
     background 0.2s ease;
+}
+
+.link-emoji {
+  font-size: 1.1rem;
+  line-height: 1;
 }
 
 .social-link:hover {
