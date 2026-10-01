@@ -32,22 +32,23 @@ function toggleTheme() {
 
 <template>
   <v-app>
-    <v-main class="d-flex align-center justify-center px-4 py-8">
+    <v-main class="d-flex align-center justify-center pa-4">
       <v-container fluid class="d-flex justify-center">
         <v-row justify="center">
           <v-col cols="12" sm="8" md="6" lg="4">
-            <v-card class="pa-6 position-relative rounded-xl" max-width="480" elevation="8">
+            <v-card max-width="480" class="mx-auto pa-6 rounded-xl position-relative" elevation="8">
               <v-btn
-                class="theme-toggle position-absolute"
+                class="position-absolute"
                 :icon="isDark ? 'mdi-white-balance-sunny' : 'mdi-moon-waning-crescent'"
                 variant="text"
                 size="small"
                 :aria-label="themeLabel"
                 @click="toggleTheme"
+                style="top: 16px; right: 16px;"
               />
 
               <div class="d-flex justify-center">
-                <v-avatar size="104" color="deep-purple-lighten-3" class="mb-5 text-h5 font-weight-bold">
+                <v-avatar size="104" color="deep-purple-accent-2" class="mb-5 text-h5 font-weight-bold">
                   KN
                 </v-avatar>
               </div>
@@ -66,16 +67,24 @@ function toggleTheme() {
                   :href="link.href"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="justify-center text-none"
+                  block
                   variant="tonal"
                   rounded="lg"
                   size="large"
+                  class="justify-start text-none"
                 >
                   <v-icon :icon="link.icon" start />
                   {{ link.label }}
                 </v-btn>
 
-                <v-btn to="/about" class="justify-center text-none" variant="tonal" rounded="lg" size="large">
+                <v-btn
+                  to="/about"
+                  block
+                  variant="tonal"
+                  rounded="lg"
+                  size="large"
+                  class="justify-start text-none"
+                >
                   <v-icon icon="mdi-account" start />
                   About
                 </v-btn>
@@ -87,10 +96,3 @@ function toggleTheme() {
     </v-main>
   </v-app>
 </template>
-
-<style scoped>
-.theme-toggle {
-  top: 16px;
-  right: 16px;
-}
-</style>
