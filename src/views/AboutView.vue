@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
+import { RouterLink } from 'vue-router'
 
 const isDark = ref(true)
 
@@ -45,6 +46,8 @@ function toggleTheme() {
           human-centered experiences. My work blends visual storytelling, thoughtful UX, and practical
           product thinking to build digital experiences that feel both useful and memorable.
         </p>
+
+        <RouterLink to="/" class="back-link">Back to home</RouterLink>
       </div>
     </section>
   </main>
@@ -132,5 +135,32 @@ function toggleTheme() {
   color: var(--muted-color);
   font-size: 1rem;
   line-height: 1.7;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  margin-top: 8px;
+  padding: 0 20px;
+  border-radius: 14px;
+  border: 1px solid var(--card-border);
+  background: var(--surface-bg);
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.back-link:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 22px rgba(96, 165, 250, 0.16);
+  background: var(--surface-hover);
 }
 </style>
